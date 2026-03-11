@@ -14,7 +14,6 @@ public class oopsbanner {
         lines[5] = String.join("   ", "*   *", "*   *", "*     ", "*   * ");
         lines[6] = String.join("   ", " *** ", " *** ", "*     ", " ***  ");
 
-        // Step 3: Use enhanced for-loop to print each line
         for (String line : lines) {
             System.out.println(line);
         }
