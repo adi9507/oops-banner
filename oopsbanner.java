@@ -1,28 +1,26 @@
-public class oopsbanner {
+public class OOPSBannerApp {
 
-    public static void main(String[] args) {
+    static class CharacterPatternMap {
 
-        String[] o = getOPattern();
-        String[] p = getPPattern();
-        String[] s = getSPattern();
+        private char character;
+        private String[] pattern;
 
-        // Array to store final banner lines
-        String[] banner = new String[7];
-
-        // Combine the letters line by line
-        for (int i = 0; i < 7; i++) {
-            banner[i] = String.join("   ", o[i], o[i], p[i], s[i]);
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
         }
 
-        // Print banner
-        for (String line : banner) {
-            System.out.println(line);
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
         }
     }
 
-    // Method for letter O
-    public static String[] getOPattern() {
-        return new String[]{
+    public static CharacterPatternMap getOPattern() {
+        return new CharacterPatternMap('O', new String[]{
                 " *** ",
                 "*   *",
                 "*   *",
@@ -30,12 +28,11 @@ public class oopsbanner {
                 "*   *",
                 "*   *",
                 " *** "
-        };
+        });
     }
 
-    // Method for letter P
-    public static String[] getPPattern() {
-        return new String[]{
+    public static CharacterPatternMap getPPattern() {
+        return new CharacterPatternMap('P', new String[]{
                 "**** ",
                 "*   *",
                 "*   *",
@@ -43,12 +40,11 @@ public class oopsbanner {
                 "*    ",
                 "*    ",
                 "*    "
-        };
+        });
     }
 
-    // Method for letter S
-    public static String[] getSPattern() {
-        return new String[]{
+    public static CharacterPatternMap getSPattern() {
+        return new CharacterPatternMap('S', new String[]{
                 " ****",
                 "*    ",
                 "*    ",
@@ -56,6 +52,27 @@ public class oopsbanner {
                 "    *",
                 "    *",
                 "**** "
+        });
+    }
+
+    public static void main(String[] args) {
+
+        CharacterPatternMap[] letters = {
+                getOPattern(),
+                getOPattern(),
+                getPPattern(),
+                getSPattern()
         };
+
+        for (int i = 0; i < 7; i++) {
+
+            StringBuilder line = new StringBuilder();
+
+            for (CharacterPatternMap letter : letters) {
+                line.append(letter.getPattern()[i]).append("   ");
+            }
+
+            System.out.println(line.toString());
+        }
     }
 }
